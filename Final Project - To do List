@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<time.h>
+#include <time.h>
 
 struct data {
     int id;
-    char namaTugas[50];
+    char namaTugas[50], deskripsi[255];
     int prioritas, status;
     time_t waktuPencatatan;
 
     struct data *next, *prev;
 };
 
-int id = 0;
+int id = 1;
 
 int main() {
     struct data *head, *tail, *repeat, *stay, *tampil;
@@ -23,7 +23,7 @@ int main() {
     
     while(1) {
         // replace
-        system("cls");
+    	system("cls");
         printf("====== Program : To Do List ====== \n");
         printf("1. Tambah kegiatan\n");
         printf("2. Tampilkan kegiatan\n");
@@ -41,6 +41,7 @@ int main() {
             id = id + 1;
             printf("tugas ke - %d\n", tail->id);
             printf("Nama tugas : "); fflush(stdin); gets(tail->namaTugas);
+            printf("Deskripsi tugas : \n"); fflush(stdin); gets(tail->deskripsi);
             printf("prioritas (1-10) : "); scanf("%d",&tail->prioritas);
             time(&tail -> waktuPencatatan);
             tail -> status = 0;
@@ -50,8 +51,53 @@ int main() {
             repeat->prev = tail;
             repeat->next = NULL;
         }
+        else if (pilihan == 2) {
+            tampil = head;
+            while(tampil->next!=NULL) {
+            	printf("--------------------------------------------------\n");
+                printf("Tugas ke - %d\n", tampil->id);
+                printf("Nama kegiatan : %s\n",tampil->namaTugas);
+                printf("Deskripsi : \n%s\n",tampil->deskripsi);
+                printf("Prioritas : %d\n",tampil->prioritas);
+                printf("dibuat pada : %s", ctime(&tampil->waktuPencatatan));
+                printf("status : ");
+                if (tampil->status == 0 ) printf("belum selesai\n");
+                else printf("selesai");
+
+                tampil = tampil->next;
+            }
+        }
+        else if (pilihan == 3) {
+			ketemu = 0;
+            int idTugas;
+            printf("id tugas yang ingin diupdate : "); scanf("%d",&idTugas);
+            tampil = head;
+
+            while(tampil->next!=NULL) {
+                if (tampil->id == idTugas) {
+                	ketemu = 1;
+                	break;
+				}
+                tampil = tampil->next;
+            }
+            
+            if(ketemu==0) printf("Data tidak ditemukan! \n");
+            else {
+            	printf("tugas ke - %d\n", tampil->id);
+        		printf("prioritas (1-10) : from %d to? ", tampil->prioritas); scanf("%d", &tampil->prioritas);
+        		printf("status : from %d to? \n\n",tampil->status); scanf("%d", &tampil->status);
+            		
+                printf("Data berhasil diupdate! \n");
+                printf("Tugas ke - %d\n", tampil->id);
+                printf("Nama kegiatan : %s\n",tampil->namaTugas);
+                printf("Deskripsi : \n%s\n",tampil->deskripsi);
+                printf("Prioritas : %d\n",tampil->prioritas);
+                printf("Waktu pencatatan : %s", ctime(&tampil->waktuPencatatan));
+                printf("status : %d\n\n",tampil->status);
+            }
+            tampil = head;
+        }
+        
     }
     return 0;
 }
-
-
