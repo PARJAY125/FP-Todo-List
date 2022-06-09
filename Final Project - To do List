@@ -32,6 +32,26 @@ int main() {
         printf("5. Keluar\n");
         printf("================== \n");
         printf("Pilihan : "); scanf("%d",&pilihan);
+        
+        if (pilihan == 1) {
+            tail = head;
+            while(tail->next!=NULL) tail = tail->next;
+            
+            tail -> id = id;
+            id = id + 1;
+            printf("tugas ke - %d\n", tail->id);
+            printf("Nama tugas : "); fflush(stdin); gets(tail->namaTugas);
+            printf("prioritas (1-10) : "); scanf("%d",&tail->prioritas);
+            time(&tail -> waktuPencatatan);
+            tail -> status = 0;
+            
+            repeat = malloc(sizeof(struct data));
+            tail->next = repeat;
+            repeat->prev = tail;
+            repeat->next = NULL;
+        }
     }
     return 0;
 }
+
+
