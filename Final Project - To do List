@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<time.h>
+
+struct data {
+    int id;
+    char namaTugas[50];
+    int prioritas, status;
+    time_t waktuPencatatan;
+
+    struct data *next, *prev;
+};
+
+int id = 0;
+
+int main() {
+    struct data *head, *tail, *repeat, *stay, *tampil;
+    int pilihan, ketemu;
+
+    head = malloc(sizeof(struct data));
+    head->prev = NULL;
+    head->next = NULL;
+    
+    while(1) {
+        // replace
+        system("cls");
+        printf("====== Program : To Do List ====== \n");
+        printf("1. Tambah kegiatan\n");
+        printf("2. Tampilkan kegiatan\n");
+        printf("3. Update kegiatan (priority atau status) \n");
+        printf("4. Hapus kegiatan\n");
+        printf("5. Keluar\n");
+        printf("================== \n");
+        printf("Pilihan : "); scanf("%d",&pilihan);
+    }
+    return 0;
+}
