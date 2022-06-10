@@ -68,25 +68,29 @@ int main() {
             }
         }
         else if (pilihan == 3) {
-			ketemu = 0;
+	    ketemu = 0;
             int idTugas;
             printf("id tugas yang ingin diupdate : "); scanf("%d",&idTugas);
             tampil = head;
 
             while(tampil->next!=NULL) {
                 if (tampil->id == idTugas) {
-                	ketemu = 1;
-                	break;
+                    ketemu = 1;
+                    break;
 				}
-                tampil = tampil->next;
+                    tampil = tampil->next;
             }
             
             if(ketemu==0) printf("Data tidak ditemukan! \n");
             else {
             	printf("tugas ke - %d\n", tampil->id);
-        		printf("prioritas (1-10) : from %d to? ", tampil->prioritas); scanf("%d", &tampil->prioritas);
-        		printf("status : from %d to? \n\n",tampil->status); scanf("%d", &tampil->status);
-            		
+		printf("prioritas (1-10) : from %d to? ", tampil->prioritas); scanf("%d", &tampil->prioritas);
+		printf("status (0 - not finish | 1 - done) from ");
+		if (tampil->status  == 1 ) printf("done to?",tampil->status); 
+		else printf("not finish to?",tampil->status);
+            	scanf("%d", &tampil->status);
+            	printf("\n\n");
+            	
                 printf("Data berhasil diupdate! \n");
                 printf("Tugas ke - %d\n", tampil->id);
                 printf("Nama kegiatan : %s\n",tampil->namaTugas);
@@ -108,8 +112,8 @@ int main() {
                 head->prev = NULL;
                 
                 printf("Tugas ke - %d\n", tampil->id);	
-		        printf("Nama kegiatan : %s\n",tampil->namaTugas);
-		        printf("Deskripsi : \n%s\n",tampil->deskripsi);
+		printf("Nama kegiatan : %s\n",tampil->namaTugas);
+		printf("Deskripsi : \n%s\n",tampil->deskripsi);
                 printf("Prioritas : %d\n",tampil->prioritas);
                 printf("Waktu pencatatan : %s\n", ctime(&tampil->waktuPencatatan));
                 printf("status : %d\n\n",tampil->status);
@@ -123,13 +127,13 @@ int main() {
                             tampil->prev->next = tampil->next;
                             tampil->next->prev = tampil->prev;
                         }	
-		            	printf("Tugas ke - %d\n", tampil->id);	
-				        printf("Nama kegiatan : %s\n",tampil->namaTugas);
-				        printf("Deskripsi : \n%s\n",tampil->deskripsi);
-		                printf("Prioritas : %d\n",tampil->prioritas);
-		                printf("Waktu pencatatan : %s\n", ctime(&tampil->waktuPencatatan));	
-		                printf("status : %d\n\n",tampil->status);
-		                free(tampil);
+			printf("Tugas ke - %d\n", tampil->id);	
+			printf("Nama kegiatan : %s\n",tampil->namaTugas);
+			printf("Deskripsi : \n%s\n",tampil->deskripsi);
+			printf("Prioritas : %d\n",tampil->prioritas);
+			printf("Waktu pencatatan : %s\n", ctime(&tampil->waktuPencatatan));	
+			printf("status : %d\n\n",tampil->status);
+			free(tampil);
                         ketemu = 1;
                     }
                     tampil = tampil->next;
