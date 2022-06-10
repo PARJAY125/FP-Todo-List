@@ -77,13 +77,14 @@ int main() {
                 if (tampil->id == idTugas) {
                     ketemu = 1;
                     break;
-				}
+		}
                     tampil = tampil->next;
             }
             
             if(ketemu==0) printf("Data tidak ditemukan! \n");
             else {
             	printf("tugas ke - %d\n", tampil->id);
+		printf("Nama kegiatan : %s\n",tampil->namaTugas);
 		printf("prioritas (1-10) : from %d to? ", tampil->prioritas); scanf("%d", &tampil->prioritas);
 		printf("status (0 - not finish | 1 - done) from ");
 		if (tampil->status  == 1 ) printf("done to?",tampil->status); 
