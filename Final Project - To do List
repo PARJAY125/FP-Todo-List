@@ -97,46 +97,51 @@ int main() {
             }
             tampil = head;
         }
-    	else if(pilihan == 4) {
-	    ketemu = 0;
-	    int idTugas;
-	    printf("nomor tugas yang ingin dihapus : "); scanf("%d",&idTugas);
-	    tampil = head;
+        else if(pilihan == 4) {
+            ketemu = 0;
+            int idTugas;
+            printf("id tugas yang ingin dihapus : "); scanf("%d",&idTugas);
+            tampil = head;
 
-	    if (head->id == idTugas) {
-		head = head->next;
-		head->prev = NULL;
-		free(tampil);
-		ketemu = 1;
-	    } else {
-		while(tampil->next!=NULL){
-		    if(tampil->id == idTugas){
-			if (tampil->next == NULL) tampil->prev->next = NULL;
-			else {
-			    tampil->prev->next = tampil->next;
-			    tampil->next->prev = tampil->prev;
-			}
-			free(tampil);
-			ketemu = 1;
-		    }
-		    tampil = tampil->next;
-		}
-	    }
-	    if(ketemu==0) printf("Data tidak ditemukan! \n");
-	    else {
-		printf("Tugas ke - %d\n", tampil->id);
-		printf("Nama kegiatan : %s\n",tampil->namaTugas);
-		printf("Prioritas : %d\n",tampil->prioritas);
-		printf("Waktu pencatatan : %s\n", ctime(&tampil->waktuPencatatan));
-		printf("status : %d\n\n",tampil->status);
-
-		printf("Data berhasil dihapus! \n");
-	    }
-	    tampil = head;
-	}
-	else if (pilihan == 5) return 0;
-	else printf("Pilihan yang anda masukkan salah!\n");
-	system("pause");    
+            if (head->id == idTugas) {
+                head = head->next;
+                head->prev = NULL;
+                
+                printf("Tugas ke - %d\n", tampil->id);	
+		        printf("Nama kegiatan : %s\n",tampil->namaTugas);
+		        printf("Deskripsi : \n%s\n",tampil->deskripsi);
+                printf("Prioritas : %d\n",tampil->prioritas);
+                printf("Waktu pencatatan : %s\n", ctime(&tampil->waktuPencatatan));
+                printf("status : %d\n\n",tampil->status);
+                free(tampil);
+                ketemu = 1;
+            } else {
+                while(tampil->next!=NULL){
+                    if(tampil->id == idTugas) {
+                        if (tampil->next == NULL) tampil->prev->next = NULL;
+                        else {
+                            tampil->prev->next = tampil->next;
+                            tampil->next->prev = tampil->prev;
+                        }	
+		            	printf("Tugas ke - %d\n", tampil->id);	
+				        printf("Nama kegiatan : %s\n",tampil->namaTugas);
+				        printf("Deskripsi : \n%s\n",tampil->deskripsi);
+		                printf("Prioritas : %d\n",tampil->prioritas);
+		                printf("Waktu pencatatan : %s\n", ctime(&tampil->waktuPencatatan));	
+		                printf("status : %d\n\n",tampil->status);
+		                free(tampil);
+                        ketemu = 1;
+                    }
+                    tampil = tampil->next;
+                }
+            }
+            if(ketemu==0) printf("Data tidak ditemukan! \n");
+            else printf("berhasil dihapus!\n");
+            tampil = head;
+        }
+        else if (pilihan == 5) return 0;
+        else printf("Pilihan yang anda masukkan salah!\n");
+        system("pause");
     }
     return 0;
 }
